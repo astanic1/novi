@@ -1,0 +1,1090 @@
+
+h5 {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+    margin: 0;
+}
+
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+
+.card-inverse .btn {
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+
+.profile {
+    position: absolute;
+    top: -12px;
+    display: inline-block;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.profile-avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.profile-inline {
+    position: relative;
+    top: 0;
+    display: inline-block;
+}
+
+.profile-inline ~ .card-title {
+    display: inline-block;
+    margin-left: 4px;
+    vertical-align: top;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a:hover {
+    color: rgba(0, 0, 0, .87);
+}
+
+
+.heder
+{
+    width:100%;height:20%;background-color:rgb(238,238,238);
+}
+.logo
+{
+    position:relative;left:10%;z-index:9999;height:12%;width:12%;float:left;
+}
+.error_poruka
+{
+    color:red;
+}
+
+#ime_input_error,#zauzet_error,#prezime_input_error,#username_input_error,#password_input_error,#email_input_error,#naziv_input_error,#cijena_input_error,#link_input_error,#admin_input_korisnik_error,#admin_input_artikal_error,#ime_kontakt_error,#prezime_kontakt_error,#poruka_kontakt_error,#cijena_min_error,#cijena_max_error,#username_sign_up_error,#ime_sign_up_error,#prezime_sign_up_error,#email_sign_up_error,#password_sign_up_error,#username_sign_in_error,#password_sign_in_error
+{
+    display: none;
+}
+#sakrijBaza
+{
+    display:none;
+}
+
+#posaljiPoruku
+{
+	width:30%;
+	height:auto;
+}
+
+#nazad_katalog
+{
+	width:20%;
+	position:relative;
+	left:40%;
+}
+#admin_pretraga
+{
+	text-align:center;color:rgb(37,37,37);
+}
+#show_hints
+{
+	overflow:hidden; background-color:rgb(37,37,37);color:white;
+}
+
+#upute
+{
+	display:none;
+}
+#korpica
+{
+	margin:0 auto;
+	width:100%;
+	text-align:center;
+}
+#admin_tools
+{
+	  background-color: rgb(238,238,238);color:rgb(37,37,37);
+}
+
+.forma_container
+{
+	margin:0 auto;height:100%;width:50%;
+}
+
+#pdfbutton
+{
+	width:auto;
+	height:auto;
+	font-size:1vw;
+}
+#izbrisiDbButton,#createDbButton
+{
+	display:none;
+}
+
+#csvbutton,#admin_pretrazi,#dodajKorisnika,#dodajArtikal,#narudzbe_button
+{
+	width:20%;text-align:center;height:auto;
+	font-size:1.2vw;
+}
+#select,#tip_input
+{
+	width:20%;text-align:center;height:auto;
+	font-size:1.2vw;
+	clear:both;
+}
+
+.donji_nav2
+{
+	
+	clear:both;
+	margin-top:10%;
+	position:fixed;
+bottom:0px;
+    z-index: 9999;
+    height: 5%;
+    width: 100%;
+    
+    color: white;
+    border-bottom: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+}
+
+.donji_nav
+{
+	display:flex;justify-content:center;vertical-align:middle;
+    position: fixed;
+
+bottom:0px;
+    z-index: 99999;
+    height: 5%;
+    width: 100%;
+    
+    color: white;
+text-align:center;
+    border-bottom: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+}
+
+.hintovi
+{
+	
+    position: fixed;
+
+bottom:5%;
+left:20%;
+    z-index: 99999;
+    width: 20%;
+    
+    color: white;
+text-align:center;
+    border-bottom: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+}
+
+#trii
+{
+	background-color:rgb(238,238,238);
+}
+
+#livesearch
+{
+	margin-left:8%;
+	font-size: 1.2vw;
+	width:60%;
+	overflow:hidden;
+	
+}
+.spanSearch
+{
+	width:100%;
+	overflow:hidden;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+.spanSearch:hover
+{
+	background-color:rgb(100,167,77);
+	color:rgb(37,37,37);
+}
+
+.carousel
+{
+    width: 100%;
+
+}
+
+.carousel_buttons_div
+{
+    
+    clear: both;
+   
+    
+    width: 100%;
+    height: 30%;
+}
+
+
+
+.carousel_komande
+{
+    height: 100%;
+    width: 40%;
+    margin: 0 auto;
+    
+}
+.carousel_slika
+{
+    width: 6%;
+    margin-top: 11%;
+    margin-bottom: 10%;
+    float: left;
+        transition: all 0.1s ease-in;
+
+    
+}
+
+/*
+
+.arrow_div
+{
+    width: 15%;
+    height: 100%;
+    vertical-align: middle;
+    float: left;
+    
+   justify-content:center;vertical-align:middle;
+    
+}
+*/
+.carousel_button
+{
+    height: 20vw;
+    width:3%;
+    float: left;
+    margin-top: 2%;
+    
+}
+
+
+
+
+
+h1, h2, h3, h4, h5, h6 
+{ color: rgb(100,167,77);
+  letter-spacing: 0em;
+  padding: 0 0 5px 0;}
+
+h1, h2, h3
+{ font: normal 170% 'century gothic', arial;
+  margin: 0 0 15px 0;
+  padding: 15px 0 5px 0;
+    font-weight: 300;
+  }
+
+h2
+{ font-size: 160%;
+  padding: 9px 0 5px 0;
+  color: #006173;}
+
+h3
+{ font-size: 140%;
+  padding: 5px 0 0 0;}
+
+h4, h6
+{ color: white;
+  padding: 0 0 5px 0;
+  font: normal 110% arial;
+  text-transform: uppercase;}
+
+h5, h6
+{ color: white;
+  font: normal 95% arial;
+  letter-spacing: normal;
+  padding: 0 0 15px 0;}
+
+
+
+.podaci
+{
+    position: absolute;
+    background-color: inherit;
+    border: 1px solid rgb(37,37,37);
+    display: none;
+    
+    height: 20%;
+    width: 20%;
+}
+
+
+
+.kolona.sign_up:hover .podaci
+{
+    display: block;
+}
+
+.kolona.sign_up
+{
+    height: 100%;
+    
+}
+.kolona.sign_up img
+{
+    height: 100%;
+    width: 100%;
+}
+
+.linija{
+    width: 80%;
+    margin: 5px auto;
+    height: 1px;
+    background-color: black;
+}
+
+.clanak
+{
+    width: 100%;
+    margin-bottom:7%;
+}
+
+
+
+.clanak img
+{
+    width: 100%;
+}
+.clanak p
+{
+    text-indent: 10px;
+}
+
+
+header
+{
+margin: 0;
+    padding: 0;
+	width:100%;
+	min-height: 1px;
+    color: wheat;
+    text-align: center;  
+   z-index: 99;
+    position: relative;
+    background-color: rgb(238,238,238);
+    
+
+    
+}
+
+
+
+body
+{
+
+    background-color: rgb(238,238,238);
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font: normal 1.2vw 'trebuchet ms', arial, sans-serif;
+    /*background-image: url("http://wallpapercave.com/wp/vhgYQou.jpg");*/
+    
+}
+
+header img
+{
+    max-width: 100px;
+    max-height: 100px;
+    
+}
+
+
+
+div.header_image
+{
+   background: red;
+	margin-left: 25%;
+	display: inline-block; /*Omogućava da se kolone prikažu bez da se float mora clearovati poslije*/
+	float: left;
+	min-height: 20px;
+    width: 22%;
+}
+
+
+
+.red
+{
+
+    min-width: 100px;
+	width:100%;
+	float:left;
+	min-height: 1px;
+    background-color: inherit;
+}
+
+.kolona{
+	margin-left: 2%;
+	margin-right: 2%;
+	display: inline-block; /*Omogućava da se kolone prikažu bez da se float mora clearovati poslije*/
+	float: left;
+    background-color: inherit;
+  
+     
+ 
+    margin-top:2%;
+          
+
+    
+
+    
+}
+
+.okvir
+{
+    width: 50%;
+    height: 100%;
+    margin:0 auto;
+}
+
+img.korpica
+{
+    float: left;
+width:100%; 
+  height:100%;
+  margin:auto;
+  display:block;
+}
+.korpa_wrapper
+{
+    height: 100%;
+    width: 15%;
+    background-color: rebeccapurple;
+}
+
+.korpa_div
+{
+    
+    height: 20%;
+    width: 100%;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+           background-color: rgb(37,37,38);
+
+
+        transition: all 0.1s ease-in;
+    color: white;
+
+}
+
+
+
+.korpa_div:hover
+{
+         background-color: rgb(100,167,78);
+    cursor: pointer;
+}
+
+
+
+.ikona_div
+{
+    min-height: 12px;
+    min-width: 12px;
+    width: 100%;
+    height: 49%;
+    background-color: white;
+
+    border-bottom: 1px solid rgb(100,167,77);
+}
+
+
+
+.tekst_div
+{
+    
+    height: 50%;
+    width: 100%;
+}
+
+img.ikona
+{
+    width:100%; 
+  height:100%;
+  margin:auto;
+  display:block;
+    
+
+}
+
+
+
+.kolona img.basket
+{
+
+    
+    max-width: 20px;
+    max-height: 20px;
+    float: left;
+}
+
+.kolona h1
+{
+    width: auto;
+    height: auto;
+    
+}
+
+.kolona p.naziv
+{
+    color: rgb(37,37,37);
+    padding: 0;
+    margin: 0;
+}
+
+.kolona p.cijena
+{
+    padding: 0;
+    margin: 0;
+    color: rgb(100,167,77);
+    font-weight: bold;
+}
+
+
+
+.kolona.cetri{
+	width: 96%;
+    
+}
+.kolona.tri{
+	width: 70%;
+}
+.kolona.dva{
+	width: 44%;
+    
+}
+.kolona.kontakti
+{
+    width: 80%;
+    float: none;
+    position: relative;
+    left: 8%;
+    
+    
+}
+
+
+
+.kolona.jedan.meni ul li:hover
+{
+    background-color: zz
+}
+
+.kolona.kartica
+{
+    width: 29%;
+      overflow:hidden;
+    white-space: nowrap;
+    min-width: 10px;
+        text-align: center;
+    background-color: rgb(248,248,248);
+            box-shadow: 1px 1px 2px #888888;
+}
+
+.kolona.carousel
+{
+    width: 25%;
+     overflow:hidden;
+    white-space: nowrap;
+    min-width: 10px;
+        text-align: center;
+    background-color: rgb(248,248,248);
+            box-shadow: 1px 1px 2px #888888;
+        transition: all 0.4s ease-in;
+
+    
+}
+
+
+
+
+
+.kolona.kartica button, .kolona.kartica p   , .kolona.carousel button, .kolona.carousel p
+{
+    margin: 4px 0;
+}
+
+.kolona.kartica:hover, .kolona.carousel:hover
+{
+                box-shadow: 2px 2px 3px #888888;
+    transition: all 0.1s ease-in;
+
+ 
+    
+}
+
+.kolona.jedan{
+	width: 20%;
+    overflow: hidden;
+    
+    min-width: 10px;
+        text-align: center;
+    background-color: rgb(248,248,248);
+            box-shadow: 1px 1px 2px #888888;
+
+
+}
+.kolona.pola
+{
+    width: 10%;
+        background-color: rgb(248,248,248);
+
+}
+.kolona.trecina
+{
+    width: 7%;
+        background-color: rgb(248,248,248);
+}
+.kolona.cetvrtina
+{
+    width:5%;
+            background-color: rgb(248,248,248);
+
+}
+
+
+.kolona:first-child{
+}
+.kolona:last-child{
+}
+
+.pozadina
+{
+    width: 50%;
+    margin:0 auto;
+    
+}
+
+div.ram
+{
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    clear: both;
+    
+    background-color: white;
+}
+
+.full_screen
+{
+    display: none;
+    width: 90%;
+    height: 90%;
+    left:5%;
+    right: -5%;
+    top:5%;
+    bottom: -5%;
+    text-align: center;
+    position: absolute;
+    z-index: 9999;
+}
+.full_screen img
+{
+    width: 100%;
+    
+}
+
+footer
+{
+        clear: both;
+
+		position:relative;
+		z-index:999;
+    width: 100%;
+    height: 20%;
+    color: white;
+    
+    border-top: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+
+}
+.tekst_footer
+{
+    margin-left: 10%;
+    padding: 2%
+}
+div.mapa
+{
+height:35vw;
+}
+
+div.mapa_footer
+{
+    width:100%;height:80%;min-height:100px
+}
+
+
+
+
+.fixed_clan
+{
+    align-self: center;
+    margin-left:5px;
+    margin-right: 7px;
+    text-transform: uppercase;
+}
+
+.fixed_clan img
+{
+    height: 15px;
+    width: 15px;
+}
+
+.fixed_clan img:hover
+{
+    background-color: rgb(75,75,75);
+}
+
+.fixed_clan p
+{
+    color:white;
+    text-decoration: none;
+    transition: all 0.2s ease-in;
+    
+}
+.fixed_clan p:hover
+{
+    color:rgb(100,167,77);
+    cursor: pointer;
+}
+
+.fixed_nav
+{
+    display:flex;justify-content:center;vertical-align:middle;
+    position: fixed;
+
+top:0px;
+    z-index: 9;
+    height: 5%;
+    width: 100%;
+    
+    color: white;
+text-align:center;
+    border-bottom: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+}
+.mobilni_nav
+{
+    display:flex;justify-content:center;vertical-align:middle;
+    position: fixed;
+
+top:0px;
+    z-index: 7;
+    height: 5%;
+    width: 100%;
+    
+    color: white;
+text-align:center;
+    border-bottom: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+}
+
+
+
+nav
+{
+    clear: both;
+    position: relative;
+    z-index: 12;
+    
+overflow: hidden;    
+    color: white;
+text-align:center;
+    border-bottom: 5px solid rgb(100,167,77);
+    background-color: rgb(37,37,37);
+max-height: 50px;
+    
+}
+
+
+nav ul {
+    list-style-type: none;
+    
+    min-width: 200px;
+    color: white;
+    
+}
+nav ul a
+{
+        text-decoration: none;
+        text-transform: uppercase;
+         
+}
+nav ul li a:hover
+{
+    color:rgb(100,167,77);
+}
+
+nav ul li {
+    
+    display: inline-block;
+    color: white;
+}
+nav ul li:hover {
+        color: rgb(100,167,77);
+
+}
+nav ul ul {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    border: 5px solid #222;
+    
+	
+}
+nav ul ul li {
+    display: block;
+}
+nav ul ul li a
+{
+	
+    text-decoration: none;
+color:white;
+}
+
+nav ul ul li a:visited {
+    color: white;
+
+}
+nav ul ul li a:hover
+{
+        color: rgb(100,167,77);
+
+}
+nav li a
+{
+    color: white;
+    font-style: normal;
+}
+
+nav ul li:hover ul {
+    display: block;
+    color: white;
+}
+
+form
+{
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    
+}
+
+
+div.slika_korpa
+{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+img.slicica
+{float: left;
+    height: 100%;
+    width: auto;
+}
+
+ul
+{
+    
+}
+
+
+div.lista
+{
+    
+    width: 100%;
+    height: 20%;
+    overflow:hidden;
+    white-space: nowrap;
+    
+}
+
+
+
+.pretraga
+{
+    width: 10%;
+}
+.pretraga input
+{
+    width:20%;
+}
+form.pretraga submit
+{
+    width: 10%;
+}
+
+label
+{
+    margin-top: 1%;
+    float: left;
+    width: 20%;
+    clear: both;
+}
+input
+{
+    margin-top: 5%;
+    
+    width: 80%;
+    height: 1.2vw
+}
+input[type="button"]
+{
+    font-size: 1.2vw;
+    height: 2.3vw;
+    width: 50%;
+    
+}
+
+textarea
+{
+    resize:none;width:80%;
+}
+
+
+@media screen and (max-width:850px)
+{
+    .kolona.kartica.carousel
+    {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+   .kolona.kartica
+    {
+        
+        width: 96%;
+        clear: both;
+    }
+    
+    
+    
+    .fixed_clan
+    {
+    }
+    .kontejner_meni
+    {
+    }
+    .kontejner_filter
+    {
+    }
+    .mobilni_nav
+    {
+        z-index: 200;
+    }
+    .fixed_nav
+    {
+        z-index:-1;
+    }
+    
+.fixed_clan img
+{
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 4px;
+    
+    }
+    
+    .wrapper
+    {
+        width:100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    div.ram
+    {
+        width:100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .fixed_nav
+    {
+        height:20px;
+    }
+    .mobilni_nav
+    {
+        height:20px;
+    }
+    .pozadina
+    {
+                background-image: url(korpa200.png);
+
+    }
+    
+   
+}

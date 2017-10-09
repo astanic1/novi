@@ -1,0 +1,527 @@
+{% load filters %}
+
+
+    <title>Pregled Artikla</title>
+    {% load staticfiles %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/ajaks.js' %}"></script>
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ikone.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+    {% block javascript %}
+
+    <script>
+    $(document).ready(function(){
+
+        $( "#pokusaj" ).click(function() {
+        alert( "Handler for .click() called." );
+        });
+    });
+
+    </script>
+
+
+
+
+
+
+ <script>
+    $(document).ready(function(){
+
+        $( "#posaljiRecenziju" ).click(function() {
+
+            var ocjena=0;
+            if(document.getElementById("inlineRadio1").checked)
+                ocjena=1;
+            else if (document.getElementById("inlineRadio2").checked)
+                ocjena=2;
+            else if (document.getElementById("inlineRadio3").checked)
+                ocjena=3;
+            else if (document.getElementById("inlineRadio4").checked)
+                ocjena=4;
+            else
+                ocjena=5;
+
+            alert(ocjena)
+            var tekst_recenzije = document.getElementById('tekst_recenzije').value;
+
+            if(tekst_recenzije.length < 5)
+            {
+                document.getElementById('recenzijaUpozorenje').style.display='block';
+                return;
+            }
+            else
+                document.getElementById('recenzijaUpozorenje').style.display='none';
+
+
+
+            $.ajax({url: "http://localhost:8000/prodavnica/spasiRecenziju",
+
+                    data: {
+                        'ocjena' : ocjena,
+                        'tekst_recenzije' : tekst_recenzije,
+                        'artikal_id' : {{ artikal.id }}
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                       // document.getElementById("sadrzaj_korpe").innerHTML=result;
+
+                            window.location.href = "http://localhost:8000/prodavnica/" + {{ artikal.id }}
+
+         }});
+
+
+        });
+    });
+    </script>
+
+
+
+
+
+
+ <script>
+    $(document).ready(function(){
+
+        $( ".btn-success" ).click(function() {
+            var id = $(this).attr('id');
+
+
+            $.ajax({url: "http://localhost:8000/prodavnica/ajax/dodajUKorpu",
+                    data: {
+                    'artikal': id.toString()
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                       // document.getElementById("sadrzaj_korpe").innerHTML=result;
+
+
+         }});
+
+
+        });
+    });
+
+    </script>
+
+    <script>
+    $(document).ready(function(){
+        $( ".list-group-item" ).click(function() {
+            var id = $(this).attr('id');
+
+
+           $.ajax({url: "http://localhost:8000/prodavnica/ajax/filtriraj",
+                    data: {
+                    'kategorija': id.toString()
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                                                   document.getElementById("sadrzaj_kataloga").innerHTML=result;
+
+
+         }});
+         });
+    });
+</script>
+
+    {% endblock %}
+
+
+</head>
+
+
+
+<body >
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Web Shop</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li ><a href='http://localhost:8000/prodavnica'>Pocetna stranica</a></li>
+                    <li class="active"><a href="http://localhost:8000/prodavnica/katalog">Katalog</a></li>
+{% if  user.is_authenticated %}
+
+                    <li ><a href='http://localhost:8000/prodavnica/korpa'>Korpa</a></li>
+                            {% endif %}
+
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+
+
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Prijava/Odjava <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li style="width: auto" class="container">
+
+                            {% if not user.is_authenticated %}
+
+                                <form action="/prodavnica/login/" method="post" class="form-horizontal">
+                                                                    {% csrf_token %}
+
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="username_login" type="text" class="form-control" name="username_login" placeholder="Username">
+                                      </div>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="password_login" type="password" class="form-control" name="password_login" placeholder="Password">
+                                      </div>
+
+                                    <div style="text-align: center">
+                                 <button type="submit"  class="btn btn-success">Log in</button>
+                                    </div>
+
+                                    </form>
+
+
+
+                            {% endif %}
+
+                            {% if  user.is_authenticated %}
+
+                                <form action="/prodavnica/logout/" method="post" class="form-horizontal">
+                                {% csrf_token %}
+                                    <div style="text-align: center">
+
+                                 <button type="submit" class="btn btn-success">Log out</button>
+                                    </div>
+
+                                </form>
+
+
+                            {% endif %}
+
+
+
+
+                            </li>
+
+
+
+						</ul>
+					</li>
+
+
+
+
+				</ul>
+
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+       <div class="container" id="sadrzaj_kataloga">
+
+
+
+
+           <div class="row">
+
+
+
+           <div class="col-sm-1 "></div>
+
+
+
+
+
+            <div class="col-sm-4 ">
+                <div class="card card-inverse card-info">
+                    <a href="http://localhost:8000/prodavnica/{{ artikal.id }}"> <img class="card-img-top" src="{{ artikal.ikona }}"></a>
+                    <div class="card-block">
+                        <figure class="profile profile-inline">
+                            <img src="{{ artikal.ikona }}" class="profile-avatar" alt="">
+                        </figure>
+                        </figure>
+                    <h4 class="card-title">{{ artikal.naziv }}</h4>
+                        <div class="card-text">
+                            Cijena: {{ artikal.cijena }},00 KM
+                        </div>
+                    </div>
+
+                                                {% if user.is_authenticated %}
+
+                    <div class="card-footer">
+
+
+                        <button class="btn btn-success" id="{{ artikal.id }}">U korpu</button>
+
+
+
+                    </div>
+
+                                                {% endif %}
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {% if lista_recenzije %}
+                            <h1 style="color: rgb(100,167,77)">  Recenzije</h1><br>
+
+<div class="col-sm-7">
+                        {% for recenzija in lista_recenzije %}
+
+
+
+            <div class="row">
+            <div class="col-sm-2">
+            <div class="thumbnail">
+            <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            </div><!-- /thumbnail -->
+            </div><!-- /col-sm-1 -->
+
+            <div class="col-sm-8">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+            <strong>{{ lista_korisnika|mojfilter:forloop.counter}} :</strong><span class="text-muted"> Ocjena {{ recenzija.ocjena }}</span>
+
+                                {% if recenzija.ocjena == 1 %}<span style="float:right;"><img style="float:right;" src="http://i.imgur.com/8i0pUnK.png"> </span>{% endif %}
+                                {% if recenzija.ocjena == 2 %}<span style="float:right;"><img style="float:right;"src="http://i.imgur.com/8i0pUnK.png"> <img src="http://i.imgur.com/8i0pUnK.png"></span>{% endif %}
+                                {% if recenzija.ocjena == 3 %}<span style="float:right;"><img style="float:right;"src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"> </span>{% endif %}
+                                {% if recenzija.ocjena == 4 %}<span style="float:right;"><img style="float:right;"src="http://i.imgur.com/8i0pUnK.png"> <img src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"></span>{% endif %}
+                                {% if recenzija.ocjena == 5 %}<span style="float:right;"><img style="float:right;"src="http://i.imgur.com/8i0pUnK.png"> <img src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"><img src="http://i.imgur.com/8i0pUnK.png"></span>{% endif %}
+
+
+            </div>
+            <div class="panel-body">
+                {{ recenzija.tekst }}            </div><!-- /panel-body -->
+            </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+
+            </div>
+                                        {% endfor %}
+                           {% else%}
+                            <h1 style="color: rgb(100,167,77)">  Nema Recenzija</h1><br>
+
+
+                    {% endif %}
+
+
+
+           </div>
+    </div><!-- /container -->
+       </div>
+
+<br><br>
+
+
+
+{% if korisnik_popunio in 'ne'%}
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-6">
+
+
+
+<div class="container">
+    <div class="row">
+    <div class="col-sm-6">
+            <div class="alert alert-danger" style="text-align: center; display: none;" id="recenzijaUpozorenje" >
+  <strong>Greska!</strong> Recenzija mora imati makar 5 karaktera
+</div>
+    </div>
+    </div>
+    </div>
+
+
+            {% if user.is_authenticated%}
+
+
+            <div class="form-group">
+
+
+                <label for="comment"><h2>Unesite recenziju:</h2></label>
+
+
+
+
+
+            <textarea id="tekst_recenzije" class="form-control" rows="3" placeholder="Recenzija"></textarea>
+<br>
+
+
+
+                    <label class="radio-inline">
+              Ocjena:
+            </label>
+                <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" checked="checked" id="inlineRadio1" value="option1"> 1
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+            </label>
+                <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4"> 4
+            </label>
+                <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5"> 5
+            </label>
+                <label class="radio-inline">
+                <button id="posaljiRecenziju" style="background-color: rgb(92,184,92);color: white;" type="button" class="btn btn-default">Posalji recenziju</button>
+            </label>
+
+            </div>
+
+            {% endif%}
+
+
+
+
+
+        <div class="col-sm-3"></div>
+
+
+    </div>
+
+
+        <div class="col-sm-3"></div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+{% else %}
+    <div class="container">
+        <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6"> <h2>Hvala Vam sto ste popunili recenziju</h2> </div>
+    <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+
+{% endif %}
+
+
+
+
+
+<br><br>
+
+
+</body>
+
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 footer-col">
+        <div class="logofooter"> Web Shop</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dapibus molestie erat, at tristique massa feugiat id. Cras suscipit ac ligula non imperdiet.  Nullam consequat Cras dolor ex, egestas eu pretium nec, molestie dignissim urna.
+
+Nulla vel mauris a nisl tempus aliquet eu in ligula.</p>
+        <p><i class="fa fa-map-pin"></i> Zmaja od Bosne bb, Sarajevo, Bih</p>
+        <p><i class="fa fa-phone"></i> Telefon: +3873361122</p>
+        <p><i class="fa fa-envelope"></i> E-mail : astanic1@etf.unsa.ba</p>
+
+      </div>
+      <div class="col-md-4 col-sm-6 footer-col">
+        <h6 class="heading7">Vanjski linkovi</h6>
+        <ul class="footer-ul">
+          <li><a href="https://www.tutorialspoint.com/python/"> Python</a></li>
+          <li><a href="https://docs.djangoproject.com/en/1.11/"> Django</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-4 col-sm-6 footer-col">
+        <h6 class="heading7">Social Media</h6>
+        <ul class="footer-social">
+          <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li>
+          <li><i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i></li>
+          <li><i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i></li>
+          <li><i class="fa fa-google-plus social-icon google" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+

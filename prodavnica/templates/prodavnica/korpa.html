@@ -1,0 +1,460 @@
+{% load filters %}
+
+
+    <title>Korpa</title>
+    {% load staticfiles %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/ajaks.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ikone.css' %}">
+
+    {% block javascript %}
+
+    <script>
+    $(document).ready(function(){
+
+        $( "#pokusaj" ).click(function() {
+        alert( "Handler for .click() called." );
+        });
+    });
+
+    </script>
+
+
+         <script>
+    $(document).ready(function(){
+        $( "#finalizuj_kupovinu" ).click(function() {
+
+                alert('asdasd');
+            if((document.getElementById('adresa').value).length < 8) {
+
+
+                document.getElementById('adresaUpozorenje').style.display = 'block';
+            	return;
+			}
+			    document.getElementById('adresaUpozorenje').style.display = 'none';
+
+
+
+           $.ajax({url: "http://localhost:8000/prodavnica/ajax/finalizujKupovinu",
+                    data: {
+						'adresa' : document.getElementById('adresa').value,
+						'korisnik_id' : {{ korisnik_id }}
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                       // document.getElementById("sadrzaj_korpe").innerHTML=result;
+
+						document.getElementById("sadrzaj_korpe").innerHTML="<h1>Hvala na kupovini</h1>";
+						document.getElementById('upozorenje_adresa').innerHTML = "";
+                        document.getElementById('finaliziranjeKupovine').innerHTML='';
+                        document.getElementById('finaliziranjeKupovine2').innerHTML='';
+
+
+         }});
+         });
+    });
+    </script>
+
+
+        <script>
+    $(document).ready(function(){
+
+        $( ".btn-success" ).click(function() {
+            var id = $(this).attr('id');
+
+                alert("POZVAB SI");
+
+            $.ajax({url: "http://localhost:8000/prodavnica/ajax/dodajUKorpu",
+                    data: {
+                    'artikal': id.toString()
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                       // document.getElementById("sadrzaj_korpe").innerHTML=result;
+
+                      alert(result);
+
+         }});
+
+
+        });
+    });
+
+    </script>
+
+
+
+    <script>
+    $(document).ready(function(){
+        $( ".list-group-item" ).click(function() {
+            var id = $(this).attr('id');
+
+
+           $.ajax({url: "http://localhost:8000/prodavnica/ajax/filtriraj",
+                    data: {
+                    'kategorija': id.toString()
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                                                    document.getElementById("sadrzaj_kataloga").innerHTML=result;
+
+                      alert(result);
+
+         }});
+         });
+    });
+</script>
+
+    {% endblock %}
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Web Shop</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li ><a href='http://localhost:8000/prodavnica'>Pocetna stranica</a></li>
+                    <li ><a href="http://localhost:8000/prodavnica/katalog">Katalog</a></li>
+{% if  user.is_authenticated %}
+
+                    <li class="active"><a href='http://localhost:8000/prodavnica/korpa'>Korpa</a></li>
+                            {% endif %}
+
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+
+
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Prijava/Odjava <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li style="width: auto" class="container">
+
+                            {% if not user.is_authenticated %}
+
+                                <form action="/prodavnica/login/" method="post" class="form-horizontal">
+                                                                    {% csrf_token %}
+
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="username_login" type="text" class="form-control" name="username_login" placeholder="Username">
+                                      </div>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="password_login" type="password" class="form-control" name="password_login" placeholder="Password">
+                                      </div>
+
+                                    <div style="text-align: center">
+                                 <button type="submit"  class="btn btn-success">Log in</button>
+                                    </div>
+
+                                    </form>
+
+
+
+                            {% endif %}
+
+                            {% if  user.is_authenticated %}
+
+                                <form action="/prodavnica/logout/" method="post" class="form-horizontal">
+                                {% csrf_token %}
+                                    <div style="text-align: center">
+
+                                 <button type="submit" class="btn btn-success">Log out</button>
+                                    </div>
+
+                                </form>
+
+
+                            {% endif %}
+
+
+
+
+                            </li>
+
+
+
+						</ul>
+					</li>
+
+
+
+
+				</ul>
+
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<!--
+<form action="/prodavnica/register/" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+        {% if "username" in error_msg %}
+            username treba biti od 3 do 15 karaktera i sadrzati samo mala ili velika slova i '.',  '_'
+        {% endif %}
+
+                      Username:      <input id="username" type="text" name="username" >
+
+        {% if "first_name" in error_msg %}
+            ime smije sadrzati samo slova
+        {% endif %}
+
+
+                            Ime: <input id="first_name" type="text" name="first_name" >
+
+
+
+        {% if "password" in error_msg %}
+            password mora biti izmedju 4 i 10 karaktera, mora sadrzati makar jednu cifru i jedno veliko i malo slovo
+        {% endif %}
+
+        {% if "repeat" in error_msg %}
+
+            passwordi nisu jednaki
+        {% endif %}
+
+                            Password: <input id="password" type="text" name="password" >
+                            Ponovi password: <input id="password_repeat" type="text" name="password_repeat" >
+
+            {% if "last_name" in error_msg %}
+            prezime smije sadrzati samo slova
+        {% endif %}
+
+                            Prezime: <input id="last_name" type="text" name="last_name" >
+
+        {% if "zauzet" in error_msg %}
+            Korisnik postoji
+        {% endif %}
+
+
+                            <button type="submit">Submit</button>
+                        </form>
+
+-->
+
+
+
+
+
+
+
+
+
+    <div class="container">
+
+    <div class="row">
+
+<div class="col-sm-2"></div>
+
+
+
+
+    <div class="col-sm-8" id="sadrzaj_korpe">
+
+            {% if not artikli_korpe %}
+                <h1>Vasa korpa je prazna</h1>
+              {% endif %}
+
+        {% if artikli_korpe %}
+
+
+        <h1>
+            Vasa korpa sadrzi
+        </h1>
+
+        <table class="table table-hover">
+    <thead>
+      <tr>
+
+
+
+        <th>Artikal</th>
+
+        <th>Naziv Artikla</th>
+        <th>Kolicina</th>
+        <th>Cijena</th>
+        <th>Smanji Kolicinu</th>
+        <th>Ukupna cijena</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+
+     {% if artikli_korpe %}
+            {% for artikal in artikli_korpe %}
+                <tr>
+                    <td style="vertical-align: middle;horiz-align: center;"><img style="width: 100px;height: 100px;" src="{{ artikal.ikona }}"> </td>
+
+                    <td style="vertical-align: middle;horiz-align: center;">{{ artikal.naziv }}</td>
+                    <td style="vertical-align: middle;horiz-align: center;">{{ stavke_korpe|dajKolicinu:forloop.counter }}</td>
+                    <td style="vertical-align: middle;horiz-align: center;">{{ artikal.cijena }},00 KM</td>
+                    <td style="vertical-align: middle;horiz-align: center;"><button type="button" style="float: left;" class="btn btn-default btn-sm"
+                                                   onclick="obrisiIzKorpe({{ korpa_id }},{{ artikal.id }},{{ stavke_korpe|dajStavku:forloop.counter }},{{ korisnik_id }})"
+                    >
+  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+</button></td>
+                    <td style="vertical-align: middle;horiz-align: center;">{{ cijene|dajCijenu:forloop.counter }},00 KM</td>
+
+
+                </tr>
+
+            {% endfor %}
+          {% endif %}
+
+    </tbody>
+  </table>
+
+
+
+
+              {% endif %}
+
+
+
+
+
+
+
+
+    </div>
+    <div class="col-sm-2"></div>
+
+
+    </div>
+
+
+        {% if artikli_korpe %}
+<br><br>
+
+
+
+<div class="container" id="finaliziranjeKupovine">
+    <div class="row">
+        <div class="col-sm-3"></div>
+
+    <div class="col-sm-6">
+            <div class="alert alert-danger" style="text-align: center; display: none;" id="adresaUpozorenje" >
+  <strong>Greska!</strong> Adresa mora imati makar 8 karaktera
+</div>
+    </div>
+    <div class="col-sm-3"></div>
+    </div>
+    </div>
+            <div class="cointainer" id="finaliziranjeKupovine2">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="adresa">Adresa:</label>
+                          <input type="text" class="form-control" id="adresa">
+                        </div>
+                        <h1 id="upozorenje_adresa"></h1>
+                        <button type="button"  id="finalizuj_kupovinu" class="btn btn-default" >Finalizuj kupovinu</button>
+
+
+
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+
+
+            </div>
+
+            {% endif %}
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br>
+
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 footer-col">
+        <div class="logofooter"> Web Shop</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dapibus molestie erat, at tristique massa feugiat id. Cras suscipit ac ligula non imperdiet.  Nullam consequat Cras dolor ex, egestas eu pretium nec, molestie dignissim urna.
+
+Nulla vel mauris a nisl tempus aliquet eu in ligula.</p>
+        <p><i class="fa fa-map-pin"></i> Zmaja od Bosne bb, Sarajevo, Bih</p>
+        <p><i class="fa fa-phone"></i> Telefon: +3873361122</p>
+        <p><i class="fa fa-envelope"></i> E-mail : astanic1@etf.unsa.ba</p>
+
+      </div>
+      <div class="col-md-4 col-sm-6 footer-col">
+        <h6 class="heading7">Vanjski linkovi</h6>
+        <ul class="footer-ul">
+          <li><a href="https://www.tutorialspoint.com/python/"> Python</a></li>
+          <li><a href="https://docs.djangoproject.com/en/1.11/"> Django</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-4 col-sm-6 footer-col">
+        <h6 class="heading7">Social Media</h6>
+        <ul class="footer-social">
+          <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li>
+          <li><i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i></li>
+          <li><i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i></li>
+          <li><i class="fa fa-google-plus social-icon google" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+

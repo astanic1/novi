@@ -1,0 +1,71 @@
+.pozadina
+{
+    height: 200px;
+    width: 200px;
+    background-image: url("korpa200.png");
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+
+
+
+@media screen and (max-width: 600px) {
+.pozadina
+    {
+        width: 150px;
+        height:150px;
+        background-image: url(korpa150.png);
+        font-size: 10px;
+    }
+    
+}
+@media screen and (min-width: 767px) {
+.pozadina
+    {
+        width: 200px;
+        height:200px;
+        background-image: url(korpa200.png);
+                font-size: 15px;
+
+    }
+    
+}
+@media screen and (min-width: 1200px) {
+
+    .pozadina
+    {
+        width: 400px;
+        height:400px;
+        background-image: url(korpa400.png);
+                font-size: 30px;
+
+    }
+}
+@media screen and (min-width: 1600px) {
+
+    .pozadina
+    {
+        width: 600px;
+        height:600px;
+        background-image: url(korpa600.png);
+                font-size: 40px;
+
+    }
+}
+
+@media screen and (min-width: 2000px) {
+
+    
+    .pozadina
+    {
+        height:800px;
+        width:800px;
+        background-image: url(korpa800.png);
+                font-size: 50px;
+
+    }
+}
+

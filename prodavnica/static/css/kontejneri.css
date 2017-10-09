@@ -1,0 +1,54 @@
+
+
+
+.kontejner_meni
+{
+    width: 100%;
+    height: auto;
+    float: left;
+    background-color: rgb(248,248,248);
+    text-align: center;
+
+}
+.kontejner_filter
+{
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(248,248,248);
+    height: 10%;
+    
+
+}
+.kontejner_filter p
+{
+    margin:5%;
+    
+}
+
+.kontejner_meni ul
+{
+    padding: 10%;
+    width: auto;
+    color:black;
+        transition: all 1 s ease-in;
+
+}
+
+.kontejner_meni ul li
+{
+    position: relative;
+    width: 100%;
+    
+    transition: all 1 s ease-in;
+
+}
+.kontejner_meni ul li:hover
+{
+    background-color: rgb(100,167,77);
+    color:white;
+    cursor: pointer;
+}
+
+
+
+

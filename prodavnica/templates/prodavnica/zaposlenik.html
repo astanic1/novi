@@ -1,0 +1,309 @@
+{% load filters %}
+
+
+    <title>Zaposlenik</title>
+    {% load staticfiles %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/ajaks.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ikone.css' %}">
+
+    {% block javascript %}
+
+    <script>
+    $(document).ready(function(){
+
+        $( "#pokusaj" ).click(function() {
+        alert( "Handler for .click() called." );
+        });
+    });
+
+    </script>
+
+
+         <script>
+   /* $(document).ready(function(){
+
+        $( "#spasiPromjene" ).click(function() {
+
+
+            alert("asdasd");
+            var artikal_id = document.getElementById("cuvajId").innerHTML;
+            var nova_cijena = document.getElementById('nova_cijena').value;
+            var novi_naziv = document.getElementById('novi_naziv').value;
+
+            var er = /^[0-9]+$/;
+
+
+
+            if(!er.test(nova_cijena.toString()) || novi_naziv.length < 5)
+                return
+
+
+
+            $.ajax({url: "http://localhost:8000/prodavnica/ajax/spasiPromjene",
+                      type: "POST",
+
+                    data: {
+                    csrfmiddlewaretoken: '
+
+                    'artikal_id': artikal_id,
+                        'nova_cijena':nova_cijena,
+                        'novi_naziv':novi_naziv
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                       // document.getElementById("sadrzaj_korpe").innerHTML=result;
+
+                      alert(result);
+
+         }});
+
+
+        });
+    });*/
+
+    </script>
+
+
+
+
+
+        <script>
+    $(document).ready(function(){
+
+        $( ".btn-success" ).click(function() {
+            var id = $(this).attr('id');
+
+
+            $.ajax({url: "http://localhost:8000/prodavnica/ajax/dodajUKorpu",
+                    data: {
+                    'artikal': id.toString()
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                       // document.getElementById("sadrzaj_korpe").innerHTML=result;
+
+
+         }});
+
+
+        });
+    });
+
+    </script>
+
+
+
+    <script>
+    $(document).ready(function(){
+        $( ".list-group-item" ).click(function() {
+            var id = $(this).attr('id');
+
+
+           $.ajax({url: "http://localhost:8000/prodavnica/ajax/vratiArtikal",
+                    data: {
+                    'artikal_id': id.toString()
+                    },
+
+                    success: function(result){
+                    //$("#div1").html(result);
+                        //document.getElementById("okvir").innerHTML="asdasd";
+                                                    document.getElementById("odabrani_artikal").innerHTML=result;
+
+
+
+         }});
+         });
+    });
+</script>
+
+    {% endblock %}
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Web Shop</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li ><a href='http://localhost:8000/prodavnica'>Pocetna stranica</a></li>
+                    <li ><a href="http://localhost:8000/prodavnica/katalog">Katalog</a></li>
+{% if  user.is_authenticated %}
+
+                    <li ><a href='http://localhost:8000/prodavnica/korpa'>Korpa</a></li>
+                            {% endif %}
+
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+
+
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Prijava/Odjava <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li style="width: auto" class="container">
+
+                            {% if not user.is_authenticated %}
+
+                                <form action="/prodavnica/login/" method="post" class="form-horizontal">
+                                                                    {% csrf_token %}
+
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input id="username_login" type="text" class="form-control" name="username_login" placeholder="Username">
+                                      </div>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input id="password_login" type="password" class="form-control" name="password_login" placeholder="Password">
+                                      </div>
+
+                                    <div style="text-align: center">
+                                 <button type="submit"  class="btn btn-success">Log in</button>
+                                    </div>
+
+                                    </form>
+
+
+
+                            {% endif %}
+
+                            {% if  user.is_authenticated %}
+
+                                <form action="/prodavnica/logout/" method="post" class="form-horizontal">
+                                {% csrf_token %}
+                                    <div style="text-align: center">
+
+                                 <button type="submit" class="btn btn-success">Log out</button>
+                                    </div>
+
+                                </form>
+
+
+                            {% endif %}
+
+
+
+
+                            </li>
+
+
+
+						</ul>
+					</li>
+
+
+
+
+				</ul>
+
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+
+<body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<div class="container">
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+
+         <div class="list-group">
+             {% for artikal in artikli %}
+                <a href="#" class="list-group-item" id="{{ artikal.id }}" >{{ artikal.naziv }}<span class="badge">{{artikal.cijena  }},00 KM</span></a>
+             {% endfor %}
+         </div>
+
+
+    </div>
+    <div class="col-sm-4" id="odabrani_artikal">
+    </div>
+    <div class="col-sm-2">
+    </div>
+
+</div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+</body>
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 footer-col">
+        <div class="logofooter"> Web Shop</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dapibus molestie erat, at tristique massa feugiat id. Cras suscipit ac ligula non imperdiet.  Nullam consequat Cras dolor ex, egestas eu pretium nec, molestie dignissim urna.
+
+Nulla vel mauris a nisl tempus aliquet eu in ligula.</p>
+        <p><i class="fa fa-map-pin"></i> Zmaja od Bosne bb, Sarajevo, Bih</p>
+        <p><i class="fa fa-phone"></i> Telefon: +3873361122</p>
+        <p><i class="fa fa-envelope"></i> E-mail : astanic1@etf.unsa.ba</p>
+
+      </div>
+      <div class="col-md-4 col-sm-6 footer-col">
+        <h6 class="heading7">Vanjski linkovi</h6>
+        <ul class="footer-ul">
+          <li><a href="https://www.tutorialspoint.com/python/"> Python</a></li>
+          <li><a href="https://docs.djangoproject.com/en/1.11/"> Django</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-4 col-sm-6 footer-col">
+        <h6 class="heading7">Social Media</h6>
+        <ul class="footer-social">
+          <li><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></li>
+          <li><i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i></li>
+          <li><i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i></li>
+          <li><i class="fa fa-google-plus social-icon google" aria-hidden="true"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
